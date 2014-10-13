@@ -101,7 +101,7 @@ class SectionHelper implements SectionHelperInterface
     public function createSection( SectionEntity $section )
     {
         $sectionCreateStruc = $this->sectionService->newSectionCreateStruct();
-        $sectionCreateStruc->identifier = $section->identifier; //FIXME use getter and setters ?
+        $sectionCreateStruc->identifier = $section->identifier;
         $sectionCreateStruc->name = $section->name;
 
         return $this->sectionService->createSection( $sectionCreateStruc );

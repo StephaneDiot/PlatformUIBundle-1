@@ -20,20 +20,18 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Section
 {
-    //TODO validation (messages)
     /**
-     * @Assert\NotBlank( message ="section.validate.identifier.not_blank" )
+     * @Assert\NotBlank( message ="section.validator.identifier.not_blank" )
      * @Assert\Regex(
      *    pattern="/(^[^A-Za-z])|\W/",
      *    match=false,
-     *    message="section.validate.identifier.format"
+     *    message="section.validator.identifier.format"
      * )
      */
     public $identifier;
 
-    //TODO validation
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank( message ="section.validator.name.not_blank" )
      */
     public $name;
 }
