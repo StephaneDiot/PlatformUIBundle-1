@@ -9,12 +9,31 @@
 
 namespace EzSystems\PlatformUIBundle\Entity;
 
-//TODO comment
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Class Section
+ *
+ * Section Entity to use with Symfony's form component
+ *
+ * @package EzSystems\PlatformUIBundle\Entity
+ */
 class Section
 {
-    //TODO validation
+    //TODO validation (messages)
+    /**
+     * @Assert\NotBlank( message ="section.validate.identifier.not_blank" )
+     * @Assert\Regex(
+     *    pattern="/(^[^A-Za-z])|\W/",
+     *    match=false,
+     *    message="section.validate.identifier.format"
+     * )
+     */
     public $identifier;
 
     //TODO validation
+    /**
+     * @Assert\NotBlank()
+     */
     public $name;
 }

@@ -89,7 +89,6 @@ class SectionController extends PjaxController
             $this->get( 'ezsystems.platformui.form.type.section' ),
             $section,
             array(
-                //TODO ?
                 'action' => $this->get( 'router' )->generate( 'admin_sectioncreate' ),
             )
         );
@@ -138,7 +137,6 @@ class SectionController extends PjaxController
             $this->get( 'ezsystems.platformui.form.type.section' ),
             $section,
             array(
-                //TODO ?
                 'action' => $this->get( 'router' )->generate(
                     'admin_sectionedit', array( 'sectionId' => $sectionId )
                 )

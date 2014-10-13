@@ -9,8 +9,6 @@
 namespace EzSystems\PlatformUIBundle\Helper;
 
 use eZ\Publish\API\Repository\SectionService;
-use eZ\Publish\API\Repository\Values\Content\SectionCreateStruct;
-use eZ\Publish\API\Repository\Values\Content\SectionUpdateStruct;
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute as AuthorizationAttribute;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use eZ\Publish\API\Repository\Values\Content\Section;

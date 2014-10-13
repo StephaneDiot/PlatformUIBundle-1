@@ -48,11 +48,9 @@ interface SectionHelperInterface
     public function contentCount( Section $section );
 
     //TODO comment
-    //TODO create section object in controller ?
     public function createSection( SectionEntity $section );
 
     //TODO comment
-    //TODO create section object in controller ?
     public function updateSection( Section $sectionToUpdate, SectionEntity $section );
 
 }
