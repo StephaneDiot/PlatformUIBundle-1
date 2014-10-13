@@ -9,14 +9,15 @@
 namespace EzSystems\PlatformUIBundle\Controller;
 
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
+use EzSystems\PlatformUIBundle\Entity\Section;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use EzSystems\PlatformUIBundle\Controller\PjaxController;
 use EzSystems\PlatformUIBundle\Helper\SectionHelperInterface;
 
 class SectionController extends PjaxController
 {
     /**
-     * @var EzSystems\PlatformUIBundle\Helper\SectionHelperInterface
+     * @var \EzSystems\PlatformUIBundle\Helper\SectionHelperInterface
      */
     protected $sectionHelper;
 
@@ -77,5 +78,98 @@ class SectionController extends PjaxController
             $response->setStatusCode( $this->getNoAccessStatusCode() );
         }
         return $response;
+    }
+
+    //TODO comment
+    public function createAction( Request $request)
+    {
+        $section = new Section();
+
+        $form = $this->createForm(
+            $this->get( 'ezsystems.platformui.form.type.section' ),
+            $section,
+            array(
+                //TODO ?
+                'action' => $this->get( 'router' )->generate( 'admin_sectioncreate' ),
+            )
+        );
+
+        $form->handleRequest( $request );
+
+        if ( $form->isValid() )
+        {
+            $this->sectionHelper->createSection( $section );
+
+            return $this->render(
+                'eZPlatformUIBundle:Section:list.html.twig',
+                array(
+                    'sectionInfoList' => $this->sectionHelper->getSectionList(),
+                    'canCreate' => $this->sectionHelper->canCreate(),
+                )
+            );
+        }
+        else
+        {
+            //TODO check if can create ?
+            //TODO redirect and success message
+
+            return $this->render(
+                'eZPlatformUIBundle:Section:create.html.twig',
+                array(
+                    'form' => $form->createView(),
+                )
+            );
+        }
+    }
+
+    //TODO comment (check if throw clause)
+    public function editAction( Request $request, $sectionId )
+    {
+        $sectionToUpdate = $this->sectionHelper->loadSection( $sectionId );
+
+        //TODO section doesn't exist --> error
+
+        // Loading API data
+        $section = new Section();
+        $section->identifier = $sectionToUpdate->identifier;
+        $section->name = $sectionToUpdate->name;
+
+        $form = $this->createForm(
+            $this->get( 'ezsystems.platformui.form.type.section' ),
+            $section,
+            array(
+                //TODO ?
+                'action' => $this->get( 'router' )->generate(
+                    'admin_sectionedit', array( 'sectionId' => $sectionId )
+                )
+            )
+        );
+
+        $form->handleRequest( $request );
+
+        if ( $form->isValid() )
+        {
+            $this->sectionHelper->updateSection( $sectionToUpdate, $section );
+
+            return $this->render(
+                'eZPlatformUIBundle:Section:list.html.twig',
+                array(
+                    'sectionInfoList' => $this->sectionHelper->getSectionList(),
+                    'canCreate' => $this->sectionHelper->canCreate(),
+                )
+            );
+        }
+        else
+        {
+            //TODO check if can update ?
+            //TODO redirect and success message
+
+            return $this->render(
+                'eZPlatformUIBundle:Section:create.html.twig', //TODO delete edit.twig
+                array(
+                    'form' => $form->createView(),
+                )
+            );
+        }
     }
 }

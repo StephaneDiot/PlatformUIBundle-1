@@ -9,6 +9,7 @@
 namespace EzSystems\PlatformUIBundle\Helper;
 
 use eZ\Publish\API\Repository\Values\Content\Section;
+use EzSystems\PlatformUIBundle\Entity\Section as SectionEntity;
 
 interface SectionHelperInterface
 {
@@ -21,7 +22,7 @@ interface SectionHelperInterface
      *      - canDelete: whether the current user can delete the section
      *      - canAssign: whether the current user can assign the section to some contents
      *
-     * @return array
+     * @return array //TODO refactor to return an object ?
      */
     public function getSectionList();
 
@@ -45,4 +46,13 @@ interface SectionHelperInterface
      * @return int
      */
     public function contentCount( Section $section );
+
+    //TODO comment
+    //TODO create section object in controller ?
+    public function createSection( SectionEntity $section );
+
+    //TODO comment
+    //TODO create section object in controller ?
+    public function updateSection( Section $sectionToUpdate, SectionEntity $section );
+
 }

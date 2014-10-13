@@ -8,21 +8,23 @@
 
 namespace EzSystems\PlatformUIBundle\Helper;
 
-use EzSystems\PlatformUIBundle\Helper\SectionHelperInterface;
 use eZ\Publish\API\Repository\SectionService;
+use eZ\Publish\API\Repository\Values\Content\SectionCreateStruct;
+use eZ\Publish\API\Repository\Values\Content\SectionUpdateStruct;
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute as AuthorizationAttribute;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use eZ\Publish\API\Repository\Values\Content\Section;
+use EzSystems\PlatformUIBundle\Entity\Section as SectionEntity;
 
 class SectionHelper implements SectionHelperInterface
 {
     /**
-     * @var eZ\Publish\API\Repository\SectionService
+     * @var \eZ\Publish\API\Repository\SectionService
      */
     protected $sectionService;
 
     /**
-     * @var Symfony\Component\Security\Core\SecurityContextInterface
+     * @var \Symfony\Component\Security\Core\SecurityContextInterface
      */
     protected $securityContext;
 
@@ -93,5 +95,29 @@ class SectionHelper implements SectionHelperInterface
     public function contentCount( Section $section )
     {
         return $this->sectionService->countAssignedContents( $section );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createSection( SectionEntity $section )
+    {
+        $sectionCreateStruc = $this->sectionService->newSectionCreateStruct();
+        $sectionCreateStruc->identifier = $section->identifier; //FIXME use getter and setters ?
+        $sectionCreateStruc->name = $section->name;
+
+        return $this->sectionService->createSection( $sectionCreateStruc );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function updateSection( Section $sectionToUpdate, SectionEntity $section)
+    {
+        $sectionUpdateStruc = $this->sectionService->newSectionUpdateStruct();
+        $sectionUpdateStruc->identifier = $section->identifier;
+        $sectionUpdateStruc->name = $section->name;
+
+        return $this->sectionService->updateSection( $sectionToUpdate, $sectionUpdateStruc );
     }
 }
