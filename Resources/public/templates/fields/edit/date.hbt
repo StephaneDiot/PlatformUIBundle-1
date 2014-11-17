@@ -4,13 +4,14 @@
         <label for="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}">
             <p class="ez-fielddefinition-name">
                 {{ fieldDefinition.names.[eng-GB] }}{{#if isRequired}}*{{/if}}:
+                {{ calendar }}
             </p>
             <p class="ez-editfield-error-message">&nbsp;</p>
         </label>
     </div>
     <div class="pure-u ez-editfield-input-area ez-default-error-style">
-        <div class="ez-editfield-input"><div class="ez-date-input-ui"><input type="text"
-                value="{{ field.fieldValue }}"
+        <div class="ez-editfield-input"><div class="ez-date-input-ui"><input type="date"
+                value="{{ html5InputDate }}"
                 class="ez-validated-input"
                 id="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}"
                 {{#if isRequired}} required{{/if}}

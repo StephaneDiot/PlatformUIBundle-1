@@ -48,7 +48,7 @@ YUI.add('ez-dateandtime-view', function (Y) {
          * @return String
          */
         _formatDate: function (date) {
-            return date.toLocaleDateString();
+            return date.toDateString();
         },
 
         /**
