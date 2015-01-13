@@ -57,6 +57,7 @@ system:
                 - '@eZPlatformUIBundle/Resources/public/css/modules/button.css'
                 - '@eZPlatformUIBundle/Resources/public/css/modules/table-data.css'
                 - '@eZPlatformUIBundle/Resources/public/css/modules/breadcrumbs.css'
+                - '@eZPlatformUIBundle/Resources/public/css/modules/yui-calendar.css'
             # theme stylesheets
                 - '@eZPlatformUIBundle/Resources/public/css/theme/app.css'
                 - '@eZPlatformUIBundle/Resources/public/css/theme/views/error.css'
@@ -98,3 +99,4 @@ system:
                 - '@eZPlatformUIBundle/Resources/public/css/theme/modules/button.css'
                 - '@eZPlatformUIBundle/Resources/public/css/theme/modules/selection-table.css'
                 - '@eZPlatformUIBundle/Resources/public/css/theme/modules/breadcrumbs.css'
+                - '@eZPlatformUIBundle/Resources/public/css/theme/modules/yui-calendar.css'
