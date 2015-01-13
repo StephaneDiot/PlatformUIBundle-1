@@ -25,7 +25,10 @@
 
 .ez-platformui-app .pure-g [class *= "pure-u"],
 .ez-platformui-app .pure-g-r [class *= "pure-u"],
-.ez-platformui-app button {
+.ez-platformui-app .yui3-g [class *= "yui3-u"],
+.ez-platformui-app button,
+.ez-platformui-app input,
+.ez-platformui-app textarea {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
