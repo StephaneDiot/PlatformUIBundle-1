@@ -65,6 +65,7 @@ YUI.add('ez-barview', function (Y) {
                     this._handleHeightUpdate();
                 }
             });
+           // this.on('*:navigationModeChange', this._handleHeightUpdate);
         },
 
         /**
@@ -160,6 +161,7 @@ YUI.add('ez-barview', function (Y) {
          */
         _handleHeightUpdate: function (e) {
             var availHeight = this.get('container').get('winHeight') - this.get('container').getY();
+            //console.log(this._getHeight(), availHeight);
 
             if (this._getHeight() > availHeight) {
                 // push actions into view more menu until the main menu is not
